@@ -48,6 +48,13 @@ class World(object):
         self.__dict__.update(settings.__dict__)
         self.distribution = settings.distribution.world_dists[id]
 
+        self.randomize_entrance_setting = self.entrance_shuffle == 'random'
+        if self.entrance_shuffle == 'random':
+            self.entrance_shuffle = random.choice(['off', 'dungeons'])
+
+        if self.open_forest == 'closed' and self.entrance_shuffle in ['all-indoors', 'all']:
+            self.open_forest = 'closed_deku'
+
         # rename a few attributes...
         self.keysanity = self.shuffle_smallkeys in ['keysanity', 'remove', 'any_dungeon', 'overworld']
         self.check_beatable_only = not self.all_reachable
@@ -244,16 +251,59 @@ class World(object):
             choices = [ch for ch in setting_info.choices if ch not in ['default', 'random']]
             self.starting_tod = random.choice(choices)
             self.randomized_list.append('starting_tod')
-        if self.starting_age == 'random':
-            if self.settings.open_forest == 'closed':
-                # adult is not compatible
-                self.starting_age = 'child'
-            else:
-                self.starting_age = random.choice(['child', 'adult'])
-            self.randomized_list.append('starting_age')
         if self.chicken_count_random:
             self.chicken_count = random.randint(0, 7)
             self.randomized_list.append('chicken_count')
+
+        # Determine combobox setttings
+        if not self.randomize_settings:
+            if self.randomize_entrance_setting == True:
+                self.randomized_list.append('entrance_shuffle')
+            if self.starting_age == 'random':
+                if self.settings.open_forest == 'closed':
+                    # adult is not compatible
+                    self.starting_age = 'child'
+                else:
+                    self.starting_age = random.choice(['child', 'adult'])
+                self.randomized_list.append('starting_age')
+            if self.open_forest == 'random':
+                if self.settings.starting_age == 'adult' or self.starting_age == 'adult':
+                    self.open_forest = random.choice(['open', 'closed_deku'])
+                else:
+                    self.open_forest = random.choice(['open', 'closed_deku', 'closed'])
+                self.randomized_list.append('open_forest')
+            if self.zora_fountain == 'random':
+                self.zora_fountain = random.choice(['closed', 'adult', 'open'])
+                self.randomized_list.append('zora_fountain')
+            if self.gerudo_fortress:
+                self.gerudo_fortress = random.choice(['normal', 'fast', 'open'])
+                self.randomized_list.append('gerudo_fortress')
+            if self.bridge == 'random':
+                setting_info = get_setting_info('bridge')
+                choices = [ch for ch in setting_info.choices if ch not in ['tokens', 'random']]
+                self.bridge = random.choice(choices)
+                self.randomized_list.append('bridge')
+            if self.shuffle_scrubs == 'random_choice':
+                self.shuffle_scrubs = random.choice(['off', 'low', 'regular', 'random'])
+                self.randomized_list.append('shuffle_scrubs')
+            if self.tokensanity == 'random':
+                self.tokensanity = random.choice(['off', 'dungeons', 'overworld', 'all'])
+                self.randomized_list.append('tokensanity')
+            if self.shuffle_mapcompass == 'random':
+                self.shuffle_mapcompass = random.choice(['remove', 'startwith', 'vanilla', 'dungeon', 'keysanity'])
+                self.randomized_list.append('shuffle_mapcompass')
+            if self.shuffle_smallkeys == 'random':
+                self.shuffle_smallkeys = random.choice(['remove', 'vanilla', 'dungeon', 'keysanity'])
+                self.randomized_list.append('shuffle_smallkeys')
+            if self.shuffle_bosskeys == 'random':
+                self.shuffle_bosskeys = random.choice(['remove', 'vanilla', 'dungeon', 'keysanity'])
+                self.randomized_list.append('shuffle_bosskeys')
+            if self.shuffle_ganon_bosskey == 'random':
+                setting_info = get_setting_info('shuffle_ganon_bosskey')
+                choices = [ch for ch in setting_info.choices if ch not in ['random']]
+                self.shuffle_ganon_bosskey = random.choice(choices)
+                self.set_lacs_condition(self.shuffle_ganon_bosskey)
+                self.randomized_list.append('shuffle_ganon_bosskey')
 
         # Determine Ganon Trials
         trial_pool = list(self.skipped_trials)
@@ -284,6 +334,16 @@ class World(object):
                 self.dungeon_mq[dung] = True
 
         self.distribution.configure_randomized_settings(self)
+
+    def set_lacs_condition(self, ganon_bosskey_setting):
+        if ganon_bosskey_setting == 'lacs_medallions':
+            self.lacs_condition = 'medallions'
+        elif ganon_bosskey_setting == 'lacs_dungeons':
+            self.lacs_condition = 'dungeons'
+        elif ganon_bosskey_setting == 'lacs_stones':
+            self.lacs_condition = 'stones'
+        else:
+            self.lacs_condition = 'vanilla'
 
 
     def load_regions_from_json(self, file_path):

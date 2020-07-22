@@ -153,8 +153,8 @@ logic_tricks = {
         'name'    : 'logic_visible_collisions',
         'tags'    : ("Entrance", "Kakariko Village",),
         'tooltip' : '''\
-                    Allows climbing through the platform to reach 
-                    Impa's House Back as adult with no items and 
+                    Allows climbing through the platform to reach
+                    Impa's House Back as adult with no items and
                     going through the Kakariko Village Gate as child
                     when coming from the Mountain Trail side.
                     '''},
@@ -346,7 +346,7 @@ logic_tricks = {
         'tags'    : ("Goron City",),
         'tooltip' : '''\
                     Allows for stopping the Goron City Spinning
-                    Pot using a bomb flower alone, requiring 
+                    Pot using a bomb flower alone, requiring
                     strength in lieu of inventory explosives.
                     '''},
     'Adult Kokiri Forest GS with Hover Boots': {
@@ -1126,7 +1126,7 @@ logic_tricks = {
                     From the far side of Gerudo Valley, a precise
                     Hover Boots movement and jumpslash recoil can
                     allow adult to reach the ledge with the crate
-                    PoH without needing Longshot. You will take 
+                    PoH without needing Longshot. You will take
                     fall damage.
                     '''},
     'Jump onto the Lost Woods Bridge as Adult with Nothing': {
@@ -1460,7 +1460,7 @@ setting_infos = [
         name           = 'enable_distribution_file',
         gui_text       = 'Enable Plandomizer (Advanced)',
         gui_tooltip    = '''\
-            Optional. Use a plandomizer JSON file to get 
+            Optional. Use a plandomizer JSON file to get
             total control over the item placement.
         ''',
         gui_params     = {
@@ -1487,7 +1487,7 @@ setting_infos = [
     ),
     Setting_Info('distribution_file', str, "Plandomizer File", "Fileinput", False, {},
         gui_tooltip = """\
-            Optional. Place a plandomizer JSON file here 
+            Optional. Place a plandomizer JSON file here
             to get total control over the item placement.
         """,
         gui_params = {
@@ -1678,12 +1678,13 @@ setting_infos = [
             'open':        'Open Forest',
             'closed_deku': 'Closed Deku',
             'closed':      'Closed Forest',
+            'random':      'Random'
             },
         gui_tooltip    = '''\
             'Open Forest': Mido no longer blocks the path to the
             Deku Tree, and the Kokiri boy no longer blocks the path
             out of the forest.
-            
+
             'Closed Deku': The Kokiri boy no longer blocks the path
             out of the forest, but Mido still blocks the path to the
             Deku Tree, requiring Kokiri Sword and Deku Shield to access
@@ -1701,9 +1702,7 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution': [
-                ('open', 1),
-                ('closed_deku', 1),
-                ('closed', 1),
+                ('random', 1)
             ],
         },
     ),
@@ -1760,23 +1759,27 @@ setting_infos = [
             'closed': 'Default Behavior (Closed)',
             'adult':  'Open For Adult',
             'open':   'Always Open',
+            'random': 'Random'
         },
         gui_tooltip    = '''\
             'Default Behavior': King Zora obstructs the way to
             Zora's Fountain. Ruto's Letter must be shown as
             child in order to move him for both eras.
 
-            'Open For Adult': King Zora is always moved in 
+            'Open For Adult': King Zora is always moved in
             the adult era. This means Ruto's Letter is only
             required to access Zora's Fountain as child.
 
             'Always Open': King Zora starts as moved in
-            both the child and adult eras. This also removes 
+            both the child and adult eras. This also removes
             Ruto's Letter from the pool since it can't be used.
         ''',
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('random', 1)
+            ]
         },
     ),
     Combobox(
@@ -1787,6 +1790,7 @@ setting_infos = [
             'normal': 'Default Behavior',
             'fast':   'Rescue One Carpenter',
             'open':   'Open Gerudo Fortress',
+            'random': 'Random'
         },
         gui_tooltip    = '''\
             'Rescue One Carpenter': Only the bottom left
@@ -1794,7 +1798,7 @@ setting_infos = [
 
             'Open Gerudo Fortress': The carpenters are rescued from
             the start of the game, and if 'Shuffle Gerudo Card' is disabled,
-            the player starts with the Gerudo Card in the inventory 
+            the player starts with the Gerudo Card in the inventory
             allowing access to Gerudo Training Grounds.
         ''',
         shared         = True,
@@ -1803,6 +1807,9 @@ setting_infos = [
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution':  [
+                ('random', 1)
+            ]
         },
     ),
     Combobox(
@@ -1816,6 +1823,7 @@ setting_infos = [
             'medallions': 'Medallions',
             'dungeons':   'Dungeons',
             'tokens':     'Gold Skulltula Tokens'
+            'random':     'Random'
         },
         gui_tooltip    = '''\
             'Always Open': Rainbow Bridge is always present.
@@ -1833,6 +1841,7 @@ setting_infos = [
             'medallions': {'settings': ['bridge_stones', 'bridge_rewards', 'bridge_tokens']},
             'dungeons':   {'settings': ['bridge_medallions', 'bridge_stones', 'bridge_tokens']},
             'tokens':     {'settings': ['bridge_medallions', 'bridge_stones', 'bridge_rewards']},
+            'random':     {'settings': ['bridge_tokens']}
         },
         gui_params     = {
             'randomize_key': 'randomize_settings',
@@ -1842,6 +1851,7 @@ setting_infos = [
                 ('stones',     1),
                 ('medallions', 1),
                 ('dungeons',   1),
+                ('random',     1)
             ],
         },
     ),
@@ -1910,7 +1920,7 @@ setting_infos = [
         name           = 'triforce_hunt',
         gui_text       = 'Triforce Hunt',
         gui_tooltip    = '''\
-            Pieces of the Triforce have been scattered around the world. 
+            Pieces of the Triforce have been scattered around the world.
             Find some of them to beat the game.
 
             Game is saved on completion, and Ganon's Castle key is given
@@ -1935,10 +1945,10 @@ setting_infos = [
         gui_tooltip    = '''\
             Select the amount of Triforce Pieces required to beat the game.
 
-            In multiworld, each world will have the same number of triforces 
-            in them. The required amount will be per world collectively. 
-            For example, if this is set to 20 in a 2 player multiworld, players 
-            need 40 total, but one player could obtain 30 and the other 10. 
+            In multiworld, each world will have the same number of triforces
+            in them. The required amount will be per world collectively.
+            For example, if this is set to 20 in a 2 player multiworld, players
+            need 40 total, but one player could obtain 30 and the other 10.
 
             Extra pieces are determined by the the Item Pool setting:
             'Plentiful': 100% Extra
@@ -1961,17 +1971,17 @@ setting_infos = [
             },
         gui_tooltip    = '''\
             Logic provides guiding sets of rules for world generation
-            which the Randomizer uses to ensure the generated seeds 
+            which the Randomizer uses to ensure the generated seeds
             are beatable.
 
-            'Glitchless': No glitches are required, but may require 
+            'Glitchless': No glitches are required, but may require
             some minor tricks. Add minor tricks to consider for logic
             in the 'Detailed Logic' tab.
 
             'Glitched': Movement-oriented glitches are likely required.
             No locations excluded.
 
-            'No Logic': Maximize randomization, All locations are 
+            'No Logic': Maximize randomization, All locations are
             considered available. MAY BE IMPOSSIBLE TO BEAT.
         ''',
         disable        = {
@@ -2024,17 +2034,17 @@ setting_infos = [
         name           = 'one_item_per_dungeon',
         gui_text       = 'Dungeons Have One Major Item',
         gui_tooltip    = '''\
-            Dungeons have exactly one major item. 
-            This naturally makes each dungeon similar in 
+            Dungeons have exactly one major item.
+            This naturally makes each dungeon similar in
             value instead of valued based on chest count.
 
-            Spirit Temple Colossus hands count as part 
-            of the dungeon. Spirit Temple has TWO items 
+            Spirit Temple Colossus hands count as part
+            of the dungeon. Spirit Temple has TWO items
             to match vanilla distribution.
 
-            Keys only count as major items if they are 
+            Keys only count as major items if they are
             shuffled everywhere (ie. in keysanity).
-            GS Tokens only count as major items if the 
+            GS Tokens only count as major items if the
             bridge requirement is set to "GS Tokens".
             Bombchus only count as major items if they
             are considered in logic.
@@ -2109,14 +2119,14 @@ setting_infos = [
             Awards all eligible prizes after the first attempt for
             Dampe Race and Gerudo Horseback Archery.
 
-            Dampe will start with the second race so you can finish 
-            the race in under a minute and get both rewards at once. 
-            You still get the first reward from the chest even if you 
+            Dampe will start with the second race so you can finish
+            the race in under a minute and get both rewards at once.
+            You still get the first reward from the chest even if you
             don't complete the race in under a minute.
 
-            Both rewards at the Gerudo Horseback Archery will be 
-            available from the first time you play the minigame. 
-            This means you can get both rewards at once if you get 
+            Both rewards at the Gerudo Horseback Archery will be
+            available from the first time you play the minigame.
+            This means you can get both rewards at once if you get
             1500 points in a single attempt.
         ''',
         shared         = True,
@@ -2303,7 +2313,7 @@ setting_infos = [
             This will require finding the Weird Egg to talk to Zelda in
             Hyrule Castle, which in turn locks rewards from Impa, Saria,
             Malon, and Talon, as well as the Happy Mask sidequest.
-            The Weird Egg is also required for Zelda's Letter to open 
+            The Weird Egg is also required for Zelda's Letter to open
             the Kakariko Gate as child which can lock some progression.
         ''',
         default        = True,
@@ -2536,10 +2546,11 @@ setting_infos = [
         gui_text       = 'Scrub Shuffle',
         default        = 'off',
         choices        = {
-            'off':     'Off',
-            'low':     'On (Affordable)',
-            'regular': 'On (Expensive)',
-            'random':  'On (Random Prices)',
+            'off':           'Off',
+            'low':           'On (Affordable)',
+            'regular':       'On (Expensive)',
+            'random':        'On (Random Prices)',
+            'random_choice': 'Random Choice'
         },
         gui_tooltip    = '''\
             'Off': Only the 3 Scrubs that give one-time
@@ -2562,8 +2573,9 @@ setting_infos = [
         gui_params     = {
             'randomize_key': 'randomize_settings',
             'distribution':  [
-                ('off', 1),
-                ('low', 1),
+                ('off',           1),
+                ('low',           1),
+                ('random_choice', 1)
             ],
         },
     ),
@@ -2625,6 +2637,7 @@ setting_infos = [
             'dungeons':  'Dungeons Only',
             'overworld': 'Overworld Only',
             'all':       'All Tokens',
+            'random':    'Random'
             },
         gui_tooltip    = '''\
             Token reward from Gold Skulltulas are
@@ -2646,6 +2659,9 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('random', 1)
+            ]
         },
     ),
     Combobox(
@@ -2660,6 +2676,7 @@ setting_infos = [
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
             'keysanity':   'Anywhere',
+            'random':    'Random'
         },
         gui_tooltip    = '''\
             'Remove': Maps and Compasses are removed.
@@ -2693,6 +2710,9 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('random', 1)
+            ]
         },
     ),
     Combobox(
@@ -2706,15 +2726,16 @@ setting_infos = [
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
             'keysanity':   'Anywhere (Keysanity)',
+            'random':    'Random'
         },
         gui_tooltip    = '''\
             'Remove': Small Keys are removed. All locked
             doors in dungeons will be unlocked. An easier
             mode.
 
-            'Vanilla': Small Keys will appear in their 
-            vanilla locations. You start with 3 keys in 
-            Spirit Temple MQ because the vanilla key 
+            'Vanilla': Small Keys will appear in their
+            vanilla locations. You start with 3 keys in
+            Spirit Temple MQ because the vanilla key
             layout is not beatable in logic.
 
             'Dungeon': Small Keys can only appear in their
@@ -2778,6 +2799,9 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('random', 1)
+            ]
         },
     ),
     Combobox(
@@ -2791,13 +2815,14 @@ setting_infos = [
             'overworld':   'Overworld Only',
             'any_dungeon': 'Any Dungeon',
             'keysanity':   'Anywhere (Keysanity)',
+            'random':    'Random'
         },
         gui_tooltip    = '''\
             'Remove': Boss Keys are removed. All locked
             doors in dungeons will be unlocked. An easier
             mode.
 
-            'Vanilla': Boss Keys will appear in their 
+            'Vanilla': Boss Keys will appear in their
             vanilla locations.
 
             'Dungeon': Boss Keys can only appear in their
@@ -2826,6 +2851,9 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('random', 1)
+            ]
         },
     ),
     Combobox(
@@ -2845,6 +2873,7 @@ setting_infos = [
             'lacs_medallions': "On LACS: Medallions",
             'lacs_dungeons':   "On LACS: Dungeons",
             'lacs_tokens':     "On LACS: Tokens",
+            'random':          'Random'
         },
         gui_tooltip    = '''\
             'Remove': Ganon's Castle Boss Key is removed
@@ -2853,7 +2882,7 @@ setting_infos = [
             'Dungeon': Ganon's Castle Boss Key can only appear
             inside Ganon's Castle.
 
-            'Vanilla': Ganon's Castle Boss Key will appear in 
+            'Vanilla': Ganon's Castle Boss Key will appear in
             the vanilla location.
             
             'Overworld Only': Ganon's Castle Boss Key can only appear
@@ -2864,11 +2893,11 @@ setting_infos = [
 
             'Anywhere': Ganon's Castle Boss Key can appear
             anywhere in the world.
-            
+
             'On LACS': These settings put the boss key on the
             Light Arrow Cutscene location, from Zelda in Temple
             of Time as adult, with differing requirements.
-            
+
             'On LACS: Vanilla': Shadow and Spirit Medallions.
             'On LACS: Medallions': A configurable amount of Medallions.
             'On LACS: Stones': A configurable amount of Spiritual Stones.
@@ -2900,6 +2929,7 @@ setting_infos = [
                 ('lacs_medallions', 1),
                 ('lacs_stones',     1),
                 ('lacs_dungeons',   1),
+                ('random',          1)
             ],
         },
     ),
@@ -3030,10 +3060,10 @@ setting_infos = [
         default        = [],
         gui_tooltip    = '''
             Locations in the left column may contain items
-            required to complete the game. 
-            
-            Locations in the right column will never have 
-            items that are required to complete the game, 
+            required to complete the game.
+
+            Locations in the right column will never have
+            items that are required to complete the game,
             and will only contain junk.
 
             Most dungeon locations have a MQ alternative.
@@ -3062,9 +3092,9 @@ setting_infos = [
         gui_tooltip='''
             Tricks moved to the right column are in-logic
             and MAY be required to complete the game.
-            
+
             Tricks in the left column are NEVER required.
-            
+
             Tricks are only relevant for Glitchless logic.
         '''
     ),
@@ -3138,7 +3168,7 @@ setting_infos = [
             Begin the game with the selected inventory items.
             Selecting multiple progressive items will give
             the appropriate number of upgrades.
-            
+
             If playing with Open Zora Fountain, the Ruto's Letter
             is converted to a regular Bottle.
         ''',
@@ -3297,7 +3327,7 @@ setting_infos = [
         gui_tooltip    = '''\
             Changes the categories of items Ice Traps may
             appear as, both when freestanding and when in
-            chests with Chest Size Matches Contents enabled. 
+            chests with Chest Size Matches Contents enabled.
 
             'Major Items Only': Ice Traps appear as Major
             Items (and in large chests if CSMC enabled).
@@ -3457,7 +3487,7 @@ setting_infos = [
         gui_tooltip    = '''\
             'No Music': No background music is played.
 
-            'Random': Area background music is randomized. 
+            'Random': Area background music is randomized.
             Additional music can be loaded from data/Music/
         ''',
         gui_params  = {
@@ -3532,11 +3562,11 @@ setting_infos = [
         shared         = False,
         cosmetic       = True,
         gui_tooltip    = '''\
-            Ingame models for items such as Heart Containers have 
+            Ingame models for items such as Heart Containers have
             colors matching the colors chosen for cosmetic settings.
             Heart and magic drop icons also have matching colors.
 
-            Tunic colors are excluded from this to prevent not being 
+            Tunic colors are excluded from this to prevent not being
             able to discern freestanding Tunics from each other.
         ''',
         default        = False,
