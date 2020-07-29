@@ -1714,6 +1714,7 @@ setting_infos = [
             'open':   'Open Gate',
             'zelda':  "Zelda's Letter Opens Gate",
             'closed': 'Closed Gate',
+            'random': 'Random'
             },
         gui_tooltip    = '''\
             This changes the behavior of the Kakariko Gate to
@@ -1735,6 +1736,9 @@ setting_infos = [
         shared         = True,
         gui_params     = {
             'randomize_key': 'randomize_settings',
+            'distribution': [
+                ('random', 1)
+            ],
         },
     ),
     Checkbutton(

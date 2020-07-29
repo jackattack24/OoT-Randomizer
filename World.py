@@ -272,6 +272,9 @@ class World(object):
                 else:
                     self.open_forest = random.choice(['open', 'closed_deku', 'closed'])
                 self.randomized_list.append('open_forest')
+            if self.open_kakariko == 'random':
+                self.open_kakariko = random.choice(['open', 'zelda', 'closed'])
+                self.randomized_list.append('open_kakariko')
             if self.zora_fountain == 'random':
                 self.zora_fountain = random.choice(['closed', 'adult', 'open'])
                 self.randomized_list.append('zora_fountain')
